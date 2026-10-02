@@ -36,15 +36,19 @@ window.PROMO = {
         meta2: "五步工作流",
         meta3: "零脚本依赖"
       },
-      terminal: {
-        title: "zsh — iskill-hot-topic-scout",
-        lines: [
-          [{ t: "▸ ", c: "p" }, { t: "帮我选题：行业=母婴，人群=0–3 岁宝妈", c: "k" }],
-          [{ t: "1 ", c: "s" }, { t: "读画像 → 多平台搜集（微博 / 抖音 / 知乎 / 小红书 / 百度 / B站）", c: "s" }],
-          [{ t: "2 ", c: "s" }, { t: "粗筛 → 三维打分 → Top 10", c: "s" }],
-          [{ t: "✓ ", c: "p" }, { t: "viral-video-team-output/选题/2026-10-02-选题.md", c: "s" }]
+      chat: {
+        title: "AI Agent · 对话现场",
+        status: "在线",
+        userLabel: "你",
+        agentLabel: "AI",
+        messages: [
+          { role: "user", text: "帮我选题：行业=母婴，产品=早教课，人群=0-3 岁宝妈" },
+          { role: "agent", text: "出 Top10 选题清单 + Top3 选题卡，每张卡带钩子、痛点与差异化角度，下游写稿技能可以直接消费。", tag: "已读 画像 profile" },
+          { role: "user", text: "只要 Top3 就行" },
+          { role: "agent", text: "报告落盘，消息里只回 Top3 摘要；你点一个，我就接着写稿。" }
         ]
       },
+
 
       stats: [
         { value: "6", label: "个平台覆盖", note: "微博 / 抖音 / 知乎 / 小红书 / 百度 / B站" },
@@ -146,15 +150,19 @@ window.PROMO = {
         meta2: "Five-step flow",
         meta3: "No script deps"
       },
-      terminal: {
-        title: "zsh — iskill-hot-topic-scout",
-        lines: [
-          [{ t: "▸ ", c: "p" }, { t: "scout topics: niche = baby care, audience = mums of 0–3 y/o", c: "k" }],
-          [{ t: "1 ", c: "s" }, { t: "read persona → gather (Weibo / Douyin / Zhihu / RED / Baidu / Bilibili)", c: "s" }],
-          [{ t: "2 ", c: "s" }, { t: "filter → three-axis score → Top 10", c: "s" }],
-          [{ t: "✓ ", c: "p" }, { t: "viral-video-team-output/选题/2026-10-02-选题.md", c: "s" }]
+      chat: {
+        title: "AI Agent · live session",
+        status: "online",
+        userLabel: "You",
+        agentLabel: "AI",
+        messages: [
+          { role: "user", text: "Find me topics: industry = baby care, product = early-education course, audience = moms of 0-3 year olds" },
+          { role: "agent", text: "You get a Top 10 list plus Top 3 topic cards, each with a hook, a pain point and a differentiating angle — ready for the copywriter skill downstream.", tag: "read profile" },
+          { role: "user", text: "Just the Top 3 is enough" },
+          { role: "agent", text: "The full report goes to disk; chat only shows the Top 3 summary. Point at one and I'll write the script next." }
         ]
       },
+
 
       stats: [
         { value: "6", label: "platforms covered", note: "Weibo / Douyin / Zhihu / RED / Baidu / Bilibili" },

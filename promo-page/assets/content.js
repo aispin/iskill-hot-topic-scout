@@ -99,13 +99,14 @@ window.PROMO = {
       steps: {
         eyebrow: "上手",
         title: "三步跑起来",
-        sub: "",
+        sub: "命令由 agent 跑，你只说要什么、看结果。",
         items: [
           { title: "交给 AI 装", desc: "把这句话粘进对话框，agent 会自己拉代码、读文档，再告诉你用法。", codeKey: "install" },
-          { title: "给画像", desc: "没有 profile 就把行业 / 产品 / 人群说清楚，临时输入优先。", codeName: "prompt", code: "帮我选题：行业=母婴，产品=早教课，人群=0–3 岁宝妈" },
-          { title: "拿选题卡", desc: "报告落在工作区，消息里只回 Top3 摘要。", codeName: "path", code: "viral-video-team-output/选题/YYYY-MM-DD-选题.md" }
+          { title: "给它画像", desc: "没有 profile 就把行业 / 产品 / 人群说清楚，临时输入优先。", codeName: "prompt", code: "帮我选题：行业=母婴，产品=早教课，人群=0-3 岁宝妈" },
+          { title: "挑一个选题", desc: "报告落在这个路径，消息里只回 Top3 摘要；你点一个，接着让它写稿。", codeName: "path", code: "viral-video-team-output/选题/YYYY-MM-DD-选题.md" }
         ]
       },
+
 
       faq: {
         eyebrow: "问答",
@@ -208,13 +209,14 @@ window.PROMO = {
       steps: {
         eyebrow: "Get started",
         title: "Up and running in three steps",
-        sub: "",
+        sub: "The agent runs the commands. You say what you want and check the result.",
         items: [
-          { title: "Let your agent install it", desc: "Paste the line into the chat — it clones the repo, reads the docs and tells you how to use it.", codeKey: "install" },
-          { title: "Give it a persona", desc: "No profile yet? Just state the niche / product / audience — ad-hoc input wins.", codeName: "prompt", code: "scout topics: niche = baby care, product = early-learning class, audience = mums of 0–3 y/o" },
-          { title: "Collect the cards", desc: "The report lands in the workspace; the chat only returns the Top3 summary.", codeName: "path", code: "viral-video-team-output/选题/YYYY-MM-DD-选题.md" }
+          { title: "Let your agent install it", desc: "Paste the line into the chat — it clones the repo, reads the docs, and tells you how to use it.", codeKey: "install" },
+          { title: "Give it your profile", desc: "No profile file? Spell out industry / product / audience — ad-hoc input wins.", codeName: "prompt", code: "Find me topics: industry = baby care, product = early-education course, audience = moms of 0-3 year olds" },
+          { title: "Pick one topic", desc: "The report lands at this path; chat only shows the Top 3 summary. Point at one and let it write the script.", codeName: "path", code: "viral-video-team-output/选题/YYYY-MM-DD-topics.md" }
         ]
       },
+
 
       faq: {
         eyebrow: "FAQ",

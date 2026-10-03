@@ -1,6 +1,6 @@
 /* ============================================================================
  * iskill-hot-topic-scout · 落地页内容
- * 事实来源：SKILL.md（五步流程 / 六平台 / 三维打分 / 输出路径）
+ * 事实来源：SKILL.md（五步流程 / 六平台 / 三维打分 / 选题库 / 输出路径）
  *           references/profile-template.md
  * 纯提示词技能，无脚本依赖；platform: "all"
  * ==========================================================================*/
@@ -18,7 +18,7 @@ window.PROMO = {
     zh: {
       meta: {
         title: "ISKILL-HOT-TOPIC-SCOUT · 每天的热点，变成能开的选题",
-        description: "每日热点选题：多平台搜集 → 画像粗筛 → 三维打分 → 出 Top3 选题卡，直接喂给下游爆款文案工作流。纯 LLM 工作流，零脚本依赖。"
+        description: "每日热点选题：多平台搜集 → 查选题库防重复 → 画像粗筛 → 三维打分 → 出 Top3 选题卡，直接喂给下游爆款文案工作流。带跨天累积的选题库，同一热点不重出。纯 LLM 工作流，零脚本依赖。"
       },
       a11y: { skip: "跳到主要内容" },
       ui: { copy: "复制", copied: "已复制", failed: "复制失败" },
@@ -29,7 +29,7 @@ window.PROMO = {
         titlePre: "每天的热点，",
         titleAccent: "变成能开的选题",
         titlePost: "",
-        sub: "多平台搜集 → 画像粗筛 → 三维打分 → 出 Top3 选题卡，交给下游爆款文案工作流直接开写。纯 LLM 工作流，零脚本依赖。",
+        sub: "多平台搜集 → 查选题库防重复 → 画像粗筛 → 三维打分 → 出 Top3 选题卡，交给下游爆款文案工作流直接开写；库跨天累积，已出过的选题不再重出。纯 LLM 工作流，零脚本依赖。",
         ctaPrimary: "复制安装提示词",
         ctaSecondary: "看源码",
         meta1: "纯提示词",
@@ -43,9 +43,9 @@ window.PROMO = {
         agentLabel: "AI",
         messages: [
           { role: "user", text: "帮我选题：行业=母婴，产品=早教课，人群=0-3 岁宝妈" },
-          { role: "agent", text: "出 Top10 选题清单 + Top3 选题卡，每张卡带钩子、痛点与差异化角度，下游写稿技能可以直接消费。", tag: "已读 画像 profile" },
+          { role: "agent", text: "先查了选题库，这次热点没跟历史重复；出 Top10 选题清单 + Top3 选题卡，每张卡带钩子、痛点与差异化角度。", tag: "已读 画像 profile" },
           { role: "user", text: "只要 Top3 就行" },
-          { role: "agent", text: "报告落盘，消息里只回 Top3 摘要；你点一个，我就接着写稿。" }
+          { role: "agent", text: "报告落盘、选题回写进库；消息里只回 Top3 摘要。你点一个，我就接着写稿。" }
         ]
       },
 
@@ -66,7 +66,7 @@ window.PROMO = {
           items: [
             "刷到什么算什么，热点早就凉了",
             "选题跟账号人群对不上，白做",
-            "凭直觉下判断，容易踩违禁词"
+            "同一条热点反复出，自己跟自己撞车"
           ]
         },
         after: {
@@ -74,6 +74,7 @@ window.PROMO = {
           items: [
             "多平台锚点搜集，每条带来源与热度证据",
             "先过画像粗筛，不相关的直接丢",
+            "先查选题库，重复的自动剔除、待用的捡回来复用",
             "三维打分排序，风险提示一并交给下游"
           ]
         }
@@ -86,6 +87,7 @@ window.PROMO = {
         items: [
           { icon: "monitor", title: "六平台热点搜集", desc: "微博 / 抖音 / 知乎 / 小红书 / 百度 / B站 各一套查询模板，再加 2–3 轮行业垂搜。" },
           { icon: "users", title: "先读画像再选题", desc: "工作区里的 hot-topic.profile.md 定义行业 / 产品 / 人群；没有就先建，临时关键词优先。" },
+          { icon: "layers", title: "跨天累积选题库", desc: "维护 <code>选题/TOPICS-INDEX.md</code>：出选题前先查库，同一热点 / 已发布的选题不重出，「待用」的旧选题还能捡回来复用。" },
           { icon: "gauge", title: "三维打分矩阵", desc: "热度势能、相关性、可蹭安全度各 0–5 分排序，下降期热点自动减分。" },
           { icon: "shield", title: "粗筛带风险意识", desc: "纯天灾惨剧、政治敏感、与调性冲突的直接丢；健康 / 财经 / 医疗类强制写合规口径。" },
           { icon: "copy", title: "固定字段选题卡", desc: "来源热点、切入角度、3 个候选标题、开头钩子、人群痛点、内容形式、风险提示——逐项填满。" },
@@ -107,7 +109,7 @@ window.PROMO = {
         items: [
           { title: "交给 AI 装", desc: "把这句话粘进对话框，agent 会自己拉代码、读文档，再告诉你用法。", codeKey: "install" },
           { title: "给它画像", desc: "没有 profile 就把行业 / 产品 / 人群说清楚，临时输入优先。", codeName: "prompt", code: "帮我选题：行业=母婴，产品=早教课，人群=0-3 岁宝妈" },
-          { title: "挑一个选题", desc: "报告落在这个路径，消息里只回 Top3 摘要；你点一个，接着让它写稿。", codeName: "path", code: "viral-video-team-output/选题/YYYY-MM-DD-选题.md" }
+          { title: "挑一个选题", desc: "报告落在这个路径、选题同时回写进库；消息里只回 Top3 摘要。你点一个，接着让它写稿。", codeName: "path", code: "viral-video-team-output/选题/YYYY-MM-DD-选题.md" }
         ]
       },
 
@@ -118,9 +120,10 @@ window.PROMO = {
         items: [
           { q: "需要 API key 或联网工具吗？", a: "不需要额外 key。技能本身是纯 LLM 工作流（无脚本依赖），热点靠 agent 的联网搜索（WebSearch）完成。" },
           { q: "热点会不会被编出来？", a: "规则要求每条热点记录来源平台与热度证据（榜单位次 / 讨论量）；搜不到好热点就明说，宁缺毋滥，不硬凑 10 条。" },
+          { q: "会不会重复出以前选过的选题？", a: "不会。每次出选题前先读 <code>选题/TOPICS-INDEX.md</code> 选题库，撞名的、近 7 天同一热点的自动剔除；库里状态为「待用」的旧选题，若热点仍成立会优先复用。" },
           { q: "选题能直接发吗？", a: "选题卡是给下游用的输入，不是成稿。接着跑 <code>iskill-viral-copywriter</code> 产出主播口播稿，再过去 AI 味、发布预检。" },
           { q: "profile 文件放哪？", a: "工作区根目录的 <code>hot-topic.profile.md</code>（也会查 <code>./config/</code>、<code>./docs/</code>）；没有就用 <code>references/profile-template.md</code> 建一个。" },
-          { q: "报告写在哪？", a: "<code>{工作区}/viral-video-team-output/选题/YYYY-MM-DD-选题.md</code>，含 Top10 清单、全部选题卡与落选原因；消息里只回 Top3。" },
+          { q: "报告写在哪？", a: "<code>{工作区}/viral-video-team-output/选题/YYYY-MM-DD-选题.md</code>，含 Top10 清单、全部选题卡与落选原因；同时更新选题库 <code>选题/TOPICS-INDEX.md</code>。消息里只回 Top3。" },
           { q: "哪些题材不碰？", a: "政治敏感、消费灾难惨剧、定性未明的争议社会事件；健康 / 财经 / 医疗类必须写明合规口径，交下游预检复核。" }
         ]
       },
@@ -132,7 +135,7 @@ window.PROMO = {
     en: {
       meta: {
         title: "ISKILL-HOT-TOPIC-SCOUT · Daily trends into angles you can shoot",
-        description: "Daily topic scouting: multi-platform gathering → persona filtering → three-axis scoring → Top3 topic cards, feeding the downstream viral-copy workflow. Pure prompt skill, no scripts."
+        description: "Daily topic scouting: multi-platform gathering → de-dupe against the topic library → persona filtering → three-axis scoring → Top3 topic cards, feeding the downstream viral-copy workflow. A cross-day topic library keeps the same trend from recurring. Pure prompt skill, no scripts."
       },
       a11y: { skip: "Skip to content" },
       ui: { copy: "Copy", copied: "Copied", failed: "Copy failed" },
@@ -143,7 +146,7 @@ window.PROMO = {
         titlePre: "Turn today's trends into ",
         titleAccent: "angles you can shoot",
         titlePost: "",
-        sub: "Gather across platforms → filter by persona → score on three axes → Top3 topic cards, ready to feed the downstream viral-copy workflow. Pure LLM, no scripts.",
+        sub: "Gather across platforms → de-dupe against the topic library → filter by persona → score on three axes → Top3 topic cards, ready to feed the downstream viral-copy workflow; the library accumulates across days so nothing recurs. Pure LLM, no scripts.",
         ctaPrimary: "Copy install prompt",
         ctaSecondary: "View source",
         meta1: "Prompt only",
@@ -157,9 +160,9 @@ window.PROMO = {
         agentLabel: "AI",
         messages: [
           { role: "user", text: "Find me topics: industry = baby care, product = early-education course, audience = moms of 0-3 year olds" },
-          { role: "agent", text: "You get a Top 10 list plus Top 3 topic cards, each with a hook, a pain point and a differentiating angle — ready for the copywriter skill downstream.", tag: "read profile" },
+          { role: "agent", text: "I checked the topic library first — nothing here collides with past runs. You get a Top 10 list plus Top 3 topic cards, each with a hook, a pain point and a differentiating angle.", tag: "read profile" },
           { role: "user", text: "Just the Top 3 is enough" },
-          { role: "agent", text: "The full report goes to disk; chat only shows the Top 3 summary. Point at one and I'll write the script next." }
+          { role: "agent", text: "The full report goes to disk and the topics get written back to the library; chat only shows the Top 3. Point at one and I'll write the script next." }
         ]
       },
 
@@ -180,7 +183,7 @@ window.PROMO = {
           items: [
             "Whatever you happen to scroll past — often already cold",
             "Topics that do not match your audience, wasted effort",
-            "Judging on instinct, easy to trip on banned wording"
+            "The same trend coming round again — colliding with yourself"
           ]
         },
         after: {
@@ -188,6 +191,7 @@ window.PROMO = {
           items: [
             "Multi-platform anchors, every hit carrying a source and evidence",
             "Persona filtering first; irrelevant hits dropped",
+            "The topic library is checked first — dupes dropped, parked topics reused",
             "Three-axis ranking, with risk notes handed downstream"
           ]
         }
@@ -200,6 +204,7 @@ window.PROMO = {
         items: [
           { icon: "monitor", title: "Six-platform gathering", desc: "A query template each for Weibo / Douyin / Zhihu / RED / Baidu / Bilibili, plus 2–3 rounds of niche search." },
           { icon: "users", title: "Persona before topics", desc: "hot-topic.profile.md in the workspace defines niche / product / audience; build one if missing, ad-hoc keywords win." },
+          { icon: "layers", title: "Cross-day topic library", desc: "Keeps <code>选题/TOPICS-INDEX.md</code>: every run checks it first, so the same trend or an already-published topic never recurs — and a parked \"to use\" topic can be picked back up." },
           { icon: "gauge", title: "Three-axis scoring", desc: "Momentum, relevance and safety scored 0–5 and ranked; topics past their peak lose points automatically." },
           { icon: "shield", title: "Filtering with risk sense", desc: "Disasters, political sensitivities and off-tone topics are dropped outright; health / finance / medical topics must carry compliance wording." },
           { icon: "copy", title: "Fixed-field topic cards", desc: "Source, angle, three candidate titles, opening hook, audience pain point, format and risk notes — every field filled." },
@@ -221,7 +226,7 @@ window.PROMO = {
         items: [
           { title: "Let your agent install it", desc: "Paste the line into the chat — it clones the repo, reads the docs, and tells you how to use it.", codeKey: "install" },
           { title: "Give it your profile", desc: "No profile file? Spell out industry / product / audience — ad-hoc input wins.", codeName: "prompt", code: "Find me topics: industry = baby care, product = early-education course, audience = moms of 0-3 year olds" },
-          { title: "Pick one topic", desc: "The report lands at this path; chat only shows the Top 3 summary. Point at one and let it write the script.", codeName: "path", code: "viral-video-team-output/选题/YYYY-MM-DD-topics.md" }
+          { title: "Pick one topic", desc: "The report lands at this path and the topics are written back to the library; chat only shows the Top 3 summary. Point at one and let it write the script.", codeName: "path", code: "viral-video-team-output/选题/YYYY-MM-DD-选题.md" }
         ]
       },
 
@@ -232,9 +237,10 @@ window.PROMO = {
         items: [
           { q: "Does it need an API key or extra tooling?", a: "No extra key. The skill is a pure LLM workflow (no script dependencies); trends come from the agent's web search (WebSearch)." },
           { q: "Will the trends be made up?", a: "The rules require every hit to record its source platform and evidence (rank, discussion volume). If nothing good turns up it says so rather than padding to 10." },
+          { q: "Will it repeat topics I chose before?", a: "No. Before each run it reads the topic library at <code>选题/TOPICS-INDEX.md</code>; anything with a matching name or the same trend within 7 days is dropped. Topics parked as \"to use\" are reused first if the trend still holds." },
           { q: "Can I publish the topics as-is?", a: "A topic card is input for the next step, not a finished script. Run <code>iskill-viral-copywriter</code> next to produce the voice-over, then de-AI and pre-check." },
           { q: "Where does the profile live?", a: "At the workspace root as <code>hot-topic.profile.md</code> (also checked in <code>./config/</code> and <code>./docs/</code>); create one from <code>references/profile-template.md</code> if absent." },
-          { q: "Where is the report written?", a: "<code>{workspace}/viral-video-team-output/选题/YYYY-MM-DD-选题.md</code>, containing the Top10 list, all topic cards and rejection reasons; only the Top3 is echoed in chat." },
+          { q: "Where is the report written?", a: "<code>{workspace}/viral-video-team-output/选题/YYYY-MM-DD-选题.md</code>, containing the Top10 list, all topic cards and rejection reasons; the topic library <code>选题/TOPICS-INDEX.md</code> is updated too. Only the Top3 is echoed in chat." },
           { q: "What topics are off-limits?", a: "Political sensitivities, exploiting disasters, and undecided social disputes; health / finance / medical topics must state compliance wording for the downstream pre-check." }
         ]
       },

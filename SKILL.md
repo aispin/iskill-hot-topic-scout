@@ -115,3 +115,15 @@ description: 当用户要做短视频/内容选题、找热点、问「今天有
 - 搜到的热点必须带来源与热度证据，宁缺毋滥；搜不到好热点就明说，不要硬凑 10 条。
 - 健康 / 财经 / 医疗类选题在 Step 4 风险提示里必须写明合规口径，交给下游预检 skill 复核。
 - 不碰政治敏感、灾难惨剧消费、明确定性争议（谁对谁错未定的社会事件只做中性科普角度）。
+
+## 依赖同步
+
+本仓库 `promo-page/assets/{app.js,style.css,icons.js}` 是 [iskill-promo-page](https://github.com/aispin/iskill-promo-page)
+模板引擎的 vendored 副本（锁定版本见 `package.json` 的 `iskillDeps`），**不要手改**——
+去真源仓库改并升 `@iskill-version`，再用 iskill-dep-sync 同步回来（本机无该工具时按下面自举）：
+
+```bash
+T="$HOME/.workbuddy/skills/iskill-dep-sync/scripts/skill-deps.mjs"
+[ -f "$T" ] || { TMP="$(mktemp -d)"; curl -fsSL "https://raw.githubusercontent.com/aispin/iskill-dep-sync/HEAD/scripts/skill-deps.mjs" -o "$TMP/skill-deps.mjs"; T="$TMP/skill-deps.mjs"; }
+node "$T" check "$(pwd)"     # 漂移检测；node "$T" sync "$(pwd)" 恢复/升级；node "$T" env "$(pwd)" 冷启动自检
+```
